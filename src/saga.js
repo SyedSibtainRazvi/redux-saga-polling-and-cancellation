@@ -8,7 +8,7 @@ function* userStatusCheckLoop() {
         try {
             const users = yield call(fetchApiData)
             yield put({ type: "GET_USERS_SUCCESS", users: users });
-            console.log(users);
+            console.log(users.content);
             yield delay(3000)
             //adds a delay of 3 seconds
 
