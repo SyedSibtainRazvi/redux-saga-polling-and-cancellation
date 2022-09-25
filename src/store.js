@@ -1,13 +1,13 @@
 import createSagaMiddleware from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
-import { userPollReducer } from "./reducer.js";
-import { userPollSaga } from "./saga.js";
+import { quotePollReducer } from "./reducer.js";
+import { quotePollSaga } from "./saga.js";
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
-    reducer: userPollReducer,
+    reducer: quotePollReducer,
     middleware: () => [sagaMiddleware]
 });
 
-sagaMiddleware.run(userPollSaga);
+sagaMiddleware.run(quotePollSaga);

@@ -1,18 +1,18 @@
 const initialState = {
-    users: [],
+    quotes: [],
     loading: false,
     error: null,
     polling: false,
 };
 
-export const userPollReducer = (state = initialState, action) => {
+export const quotePollReducer = (state = initialState, action) => {
     switch (action.type) {
         case "START_POLLING":
             return { ...state, polling: true };
         case "GET_USERS_SUCCESS":
-            return { ...state, loading: false, users: action.users };
+            return { ...state, loading: false, quotes: action.quotes };
         case "STOP_POLLING":
-            return { ...state, polling: false }
+            return { quotes:[], polling: false }
         default:
             return state
     }

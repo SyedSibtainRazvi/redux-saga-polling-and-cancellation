@@ -1,14 +1,13 @@
 import { call, put, take, fork, cancel, cancelled, delay } from "redux-saga/effects";
-import { fetchApiData } from "./fetchData.js"
+import { fetchQuoteData } from "./fetchData.js"
 
 //Worker Function
 //This creates a loop in which a request is made with a delay after the API call returns.
-function* userStatusCheckLoop() {
+function* quoteStatusCheckLoop() {
     while (true)
         try {
-            const users = yield call(fetchApiData)
-            yield put({ type: "GET_USERS_SUCCESS", users: users });
-            console.log(users.content);
+            const quotes = yield call(fetchQuoteData)
+            yield put({ type: "GET_USERS_SUCCESS", quotes: quotes });
             yield delay(3000)
             //adds a delay of 3 seconds
 
@@ -18,11 +17,11 @@ function* userStatusCheckLoop() {
         }
 }
 
-export function* userPollSaga() {
+export function* quotePollSaga() {
     while (yield take("START_POLLING")) {
 
         // starts the task in the background
-        const userPollTask = yield fork(userStatusCheckLoop)
+        const quotePollTask = yield fork(quoteStatusCheckLoop)
         // Fork: makes a non-blocking call to a function that produces a promise.
 
         // wait for the user stop action (button click in our case)
@@ -30,7 +29,7 @@ export function* userPollSaga() {
 
         // user clicked stop. cancel the background task
         // this will cause the forked userPollTask task to jump into its finally block
-        yield cancel(userPollTask)
+        yield cancel(quotePollTask)
         // Cancel: cancels the saga execution.
     }
 }

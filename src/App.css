@@ -7,3 +7,8 @@
   align-items: center;
   justify-content: center;
 }
+
+p{
+  top: 50%;
+  position: relative;
+}

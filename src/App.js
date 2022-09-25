@@ -7,25 +7,28 @@ import Button from "react-bootstrap/Button";
 
 function App() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const quotes = useSelector((state) => state.quotes);
 
   return (
     <>
       <div className="App">
+        <p>Click the buttons to start and stop polling</p>
         <Card style={{ width: "90%", maxWidth: "40rem" }}>
           <Card.Body>
             <blockquote className="blockquote mb-0">
-              <p>{users.content}</p>
-              {users.author && (
+              <p>{quotes.content}</p>
+              {quotes.author && (
                 <footer className="blockquote-footer">
-                  <cite title="Source Title">{users.author}</cite>
+                  <cite title="Source Title">{quotes.author}</cite>
                 </footer>
               )}
             </blockquote>
           </Card.Body>
         </Card>
-        <div className="m-4">
-          <Button className="margin" onClick={() => dispatch(startPolling())}>Start Polling</Button>
+        <div className="m-5">
+          <Button onClick={() => dispatch(startPolling())}>Start Polling</Button>
+          <br />
+          <br />
           <Button onClick={() => dispatch(stopPolling())}>Stop Polling</Button>
         </div>
       </div>
