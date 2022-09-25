@@ -7,7 +7,7 @@ function* quoteStatusCheckLoop() {
     while (true)
         try {
             const quotes = yield call(fetchQuoteData)
-            yield put({ type: "GET_USERS_SUCCESS", quotes: quotes });
+            yield put({ type: "GET_QUOTES_SUCCESS", quotes: quotes });
             yield delay(3000)
             //adds a delay of 3 seconds
 
